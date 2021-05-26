@@ -49,7 +49,7 @@ d$inpu <- factor(d$inpu, levels = c("Inoculated and punctured",
 ggplot(d, aes(x = Application, y = week4diff, color = inpu)) +
   geom_boxplot() + 
   labs(color = "Puncture and inoculation",
-       y = "Weight differences in week 4",
+       y = "Weight loss in week 4 (g)",
        x = "Treatment") +
   theme_classic()
 
