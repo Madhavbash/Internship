@@ -15,8 +15,7 @@ scores$symptom9week <- as.factor(scores$symptom9week)
  ggplot(scores, aes(x = treatment, fill = symptom9week))+
    geom_bar(position = "stack")+
    facet_grid(inoculation ~ puncture, margins = FALSE)
-#NOTE: inoculation iss vertically along the grid and puncture is horizontally.
-
+ 
 ##Ordinal logit model
 m1 <- polr(symptom7week ~ treatment + puncture + inoculation, data = scores)
 summary(m1)
@@ -30,16 +29,16 @@ m1_coef
 
 ##Predicting
 
-new_data <- data.frame("treatment" = "10SiO2", "puncture" = "YES", 
-                       "inoculation" = "NO")
+new_data <- data.frame("treatment" = "10SiO2", "puncture" = "P", 
+                       "inoculation" = "NI")
 round(predict(m1,new_data,type = "p"), 3)
-new_data1 <- data.frame("treatment" = "10SiO2", "puncture" = "NO", 
-                       "inoculation" = "YES")
+new_data1 <- data.frame("treatment" = "10SiO2", "puncture" = "NP", 
+                       "inoculation" = "I")
 round(predict(m1,new_data1,type = "p"), 3)
-new_data2 <- data.frame("treatment" = "control", "puncture" = "YES", 
-                        "inoculation" = "YES")
+new_data2 <- data.frame("treatment" = "control", "puncture" = "P", 
+                        "inoculation" = "NI")
 round(predict(m1,new_data2,type = "p"), 3)
-new_data3 <- data.frame("treatment" = "10SiO2", "puncture" = "YES", 
-                        "inoculation" = "YES")
+new_data3 <- data.frame("treatment" = "10SiO2", "puncture" = "P", 
+                        "inoculation" = "I")
 round(predict(m1,new_data3,type = "p"), 3)
 
