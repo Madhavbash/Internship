@@ -20,3 +20,26 @@ scores$symptom9week <- as.factor(scores$symptom9week)
 ##Ordinal logit model
 m1 <- polr(symptom7week ~ treatment + puncture + inoculation, data = scores)
 summary(m1)
+##getting the p values
+m1_coef <- data.frame(coef(summary(m1)))
+m1_coef$pValue <- pnorm(abs(m1_coef$t.value), lower.tail = FALSE) * 2
+m1_coef
+
+## p-Value is < 0.05 for control, puncture, and inoculation. 
+##So, these variables are significantly associated with visual symptoms.
+
+##Predicting
+
+new_data <- data.frame("treatment" = "10SiO2", "puncture" = "YES", 
+                       "inoculation" = "NO")
+round(predict(m1,new_data,type = "p"), 3)
+new_data1 <- data.frame("treatment" = "10SiO2", "puncture" = "NO", 
+                       "inoculation" = "YES")
+round(predict(m1,new_data1,type = "p"), 3)
+new_data2 <- data.frame("treatment" = "control", "puncture" = "YES", 
+                        "inoculation" = "YES")
+round(predict(m1,new_data2,type = "p"), 3)
+new_data3 <- data.frame("treatment" = "10SiO2", "puncture" = "YES", 
+                        "inoculation" = "YES")
+round(predict(m1,new_data3,type = "p"), 3)
+
