@@ -3,6 +3,7 @@ library(readxl)
 library(ggplot2)
 library(ggbeeswarm)
 library(MASS)
+library(agricolae)
 file3 <- "Data/Symptoms_fruits.xlsx"
 scores <- read_excel(file3)
 str(scores)
@@ -19,7 +20,7 @@ scores$treatment <- factor(scores$treatment,
  ggplot(scores, aes(x = treatment, fill = symptom9week))+
    geom_bar(position = "stack")+
    facet_grid(inoculation ~ puncture, margins = FALSE)
- 
+
 ##Ordinal logit model
 m1 <- polr(symptom7week ~ treatment + puncture + inoculation, data = scores)
 summary(m1)
