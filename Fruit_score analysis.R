@@ -25,9 +25,10 @@ bar_graph <- ggplot(scores, aes(x = treatment, fill = symptom9week))+
    geom_bar(position = "stack")+
    facet_grid(inoculation ~ puncture, margins = FALSE)
 
-bar_graph+theme_bw()+ ggtitle("Visual fruit scores") 
+bar_graph+theme_bw()+ ggtitle("Visual fruit scores")
 bar_graph+theme_wsj()+ scale_color_wsj(palette = "colors6")+
 scale_fill_wsj(palette = "colors6")+ ggtitle("Visual fruit scores")
+
 ##Ordinal logit model
 m1 <- polr(symptom7week ~ treatment + puncture + inoculation, data = scores)
 summary(m1)
