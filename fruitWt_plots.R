@@ -12,7 +12,7 @@ library(scales)
 library(reshape2)
 library(ggpubr)
 
-##data
+## importing data
 
 file2 <- "Data/orangedata2.xlsx"
 field_data <- read_excel(file2)
