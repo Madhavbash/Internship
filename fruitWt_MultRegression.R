@@ -13,7 +13,7 @@ str(field_data)
 field_data <- data.frame(field_data)
 ##Ordering treatments
 field_data$Application <- factor(field_data$Application, 
-                          levels = c("Control", "2SiO2", "5SiO2", 
+                                 levels = c("Control", "2SiO2", "5SiO2", 
                                             "10SiO2", "Mancozeb"))
 ## week 4
 model1A <- lm(field_data$week4diff ~ field_data$Application +
