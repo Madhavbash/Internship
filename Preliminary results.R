@@ -10,9 +10,8 @@ library(ggplot2)
 library(ggbeeswarm)
 library(scales)
 library(reshape2)
-file2 <- "C://Users/madha//Desktop//Internship2//orangedata2.xlsx"
+file2 <- "Data/orangedata2.xlsx"
 field_data <- read_excel(file2)
-
 ##Visualizing the data
 
 ##Beeswarm plots
