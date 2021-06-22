@@ -62,11 +62,27 @@ ggplot(field_data, aes(x = Application, y = week7diff, color = as.factor(Inocula
   geom_quasirandom(alpha = 0.7,
                    size = 1.5) 
 #percent
-ggplot(field_data, aes(x = Application, y = PercentLoss9, 
-                       color = as.factor(Inoculation), 
-                       shape = as.factor(Puncture))) +
+field_data$Inoculation <- as.factor(field_data$Inoculation)
+field_data$Puncture <- as.factor(field_data$Puncture)
+beeplot <- ggplot(field_data, aes(x = Application, y = PercentLoss9, 
+                       color = Inoculation, 
+                       shape = Puncture)) +
   scale_shape_manual(values = c(16, 1)) + 
   geom_quasirandom(alpha = 0.7,
                    size = 1.5)
+beeplot
+beeplot + scale_color_wsj(palette = "colors6")+
+  scale_fill_wsj(palette = "colors6")+ ggtitle("Visual fruit scores")
 
+beeplot+theme_wsj()+ scale_color_wsj(palette = "colors6")+
+  scale_fill_wsj(palette = "colors6")+ ggtitle("Visual fruit scores")
 
+##boxplot
+ggplot(field_data, 
+       aes_string(x = Application, y = PercentLoss9, color = Punc_ino)) +
+  geom_boxplot() + 
+  labs(color = "Puncture and inoculation",
+       y = "Weight Loss %",
+       x = "Treatment") +  theme_calc()+ scale_colour_calc()+
+  scale_fill_wsj(palette = "colors6")+ ggtitle("Visual fruit scores")
+  
